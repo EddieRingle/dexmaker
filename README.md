@@ -112,17 +112,17 @@ Maven users can get dexmaker from Sonatype's central repository. The Mockito dep
 
 ``` xml
 <dependency>
-    <groupId>com.crittercism.dexmaker</groupId>
+    <groupId>io.ringle.dexmaker</groupId>
     <artifactId>dexmaker</artifactId>
     <version>1.4</version>
 </dependency>
 <dependency>
-    <groupId>com.crittercism.dexmaker</groupId>
+    <groupId>io.ringle.dexmaker</groupId>
     <artifactId>dexmaker-dx</artifactId>
     <version>1.4</version>
 </dependency>
 <dependency>
-    <groupId>com.crittercism.dexmaker</groupId>
+    <groupId>io.ringle.dexmaker</groupId>
     <artifactId>dexmaker-mockito</artifactId>
     <version>1.4</version>
 </dependency>
@@ -130,9 +130,9 @@ Maven users can get dexmaker from Sonatype's central repository. The Mockito dep
 
 Gradle users can import the project this way:
 
-    testCompile "com.crittercism.dexmaker:dexmaker:1.4"
-    testCompile "com.crittercism.dexmaker:dexmaker-dx:1.4"
-    testCompile "com.crittercism.dexmaker:dexmaker-mockito:1.4"
+    testCompile "io.ringle.dexmaker:dexmaker:1.4"
+    testCompile "io.ringle.dexmaker:dexmaker-dx:1.4"
+    testCompile "io.ringle.dexmaker:dexmaker-mockito:1.4"
 
 
 Download [dexmaker-1.4.jar](https://oss.sonatype.org/service/local/repositories/releases/content/com/crittercism/dexmaker/dexmaker/1.4/dexmaker-1.4.jar), [dexmaker-dx-1.4.jar](https://oss.sonatype.org/service/local/repositories/releases/content/com/crittercism/dexmaker/dexmaker-dx/1.4/dexmaker-dx-1.4.jar)
