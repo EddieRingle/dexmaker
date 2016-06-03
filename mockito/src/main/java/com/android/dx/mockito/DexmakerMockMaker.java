@@ -18,15 +18,17 @@ package com.android.dx.mockito;
 
 import com.android.dx.stock.ProxyBuilder;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Proxy;
-import java.util.Set;
 import org.mockito.exceptions.base.MockitoException;
 import org.mockito.exceptions.stacktrace.StackTraceCleaner;
 import org.mockito.invocation.MockHandler;
 import org.mockito.mock.MockCreationSettings;
 import org.mockito.plugins.MockMaker;
 import org.mockito.plugins.StackTraceCleanerProvider;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Modifier;
+import java.lang.reflect.Proxy;
+import java.util.Set;
 
 /**
  * Generates mock instances on Android's runtime.
@@ -36,7 +38,7 @@ public final class DexmakerMockMaker implements MockMaker, StackTraceCleanerProv
 
     public <T> T createMock(MockCreationSettings<T> settings, MockHandler handler) {
         Class<T> typeToMock = settings.getTypeToMock();
-        Set<Class> interfacesSet = settings.getExtraInterfaces();
+        Set<Class<?>> interfacesSet = settings.getExtraInterfaces();
         Class<?>[] extraInterfaces = interfacesSet.toArray(new Class[interfacesSet.size()]);
         InvocationHandler invocationHandler = new InvocationHandlerAdapter(handler);
 
@@ -70,6 +72,10 @@ public final class DexmakerMockMaker implements MockMaker, StackTraceCleanerProv
     public void resetMock(Object mock, MockHandler newHandler, MockCreationSettings settings) {
         InvocationHandlerAdapter adapter = getInvocationHandlerAdapter(mock);
         adapter.setHandler(newHandler);
+    }
+
+    public TypeMockability isTypeMockable(Class<?> aClass) {
+        return new TypeMockChecker(aClass);
     }
 
     public MockHandler getHandler(Object mock) {
@@ -107,5 +113,22 @@ public final class DexmakerMockMaker implements MockMaker, StackTraceCleanerProv
                         || candidate.getClassName().startsWith("com.google.dexmaker.mockito.");
             }
         };
+    }
+
+    private static class TypeMockChecker implements TypeMockability {
+
+        private Class<?> checkedClass;
+
+        TypeMockChecker(Class<?> checkedClass) {
+            this.checkedClass = checkedClass;
+        }
+
+        public boolean mockable() {
+            return !Modifier.isFinal(checkedClass.getModifiers()) && !Modifier.isPrivate(checkedClass.getModifiers());
+        }
+
+        public String nonMockableReason() {
+            return "Cannot mock final or private classes";
+        }
     }
 }

@@ -17,16 +17,18 @@
 package com.android.dx.mockito;
 
 import com.android.dx.stock.ProxyBuilder;
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 
+import org.mockito.internal.debugging.LocationImpl;
 import org.mockito.internal.invocation.InvocationImpl;
 import org.mockito.internal.invocation.MockitoMethod;
 import org.mockito.internal.invocation.realmethod.RealMethod;
 import org.mockito.internal.progress.SequenceNumber;
 import org.mockito.internal.util.ObjectMethodsGuru;
 import org.mockito.invocation.MockHandler;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 
 /**
  * Handles proxy method invocations to dexmaker's InvocationHandler by calling
@@ -49,7 +51,7 @@ final class InvocationHandlerAdapter implements InvocationHandler {
 
         ProxiedMethod proxiedMethod = new ProxiedMethod(method);
         return handler.handle(new InvocationImpl(proxy, proxiedMethod, args, SequenceNumber.next(),
-                proxiedMethod));
+                proxiedMethod, new LocationImpl()));
     }
 
     public MockHandler getHandler() {
