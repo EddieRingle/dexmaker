@@ -23,13 +23,13 @@
         <version>7</version>
     </parent>
 
-    <groupId>com.crittercism.dexmaker</groupId>
+    <groupId>io.ringle.dexmaker</groupId>
     <artifactId>dexmaker-parent</artifactId>
     <version>1.5-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>dexmaker parent</name>
-    <url>https://github.com/crittercism/dexmaker</url>
+    <url>https://github.com/eddieringle/dexmaker</url>
 
     <modules>
         <module>dx</module>
@@ -48,14 +48,14 @@
     </properties>
 
     <scm>
-        <connection>scm:git:git://github.com/crittercism/dexmaker.git</connection>
-        <developerConnection>scm:git:git@github.com:crittercism/dexmaker.git</developerConnection>
-        <url>https://github.com/crittercism/dexmaker</url>
+        <connection>scm:git:git://github.com/eddieringle/dexmaker.git</connection>
+        <developerConnection>scm:git:git@github.com:eddieringle/dexmaker.git</developerConnection>
+        <url>https://github.com/eddieringle/dexmaker</url>
     </scm>
 
     <issueManagement>
         <system>GitHub Issues</system>
-        <url>https://github.com/crittercism/dexmaker/issues</url>
+        <url>https://github.com/eddieringle/dexmaker/issues</url>
     </issueManagement>
 
     <licenses>
