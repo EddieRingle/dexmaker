@@ -106,8 +106,8 @@ public final class DexmakerMockMaker implements MockMaker, StackTraceCleanerProv
 
     public StackTraceCleaner getStackTraceCleaner(final StackTraceCleaner defaultCleaner) {
         return new StackTraceCleaner() {
-            public boolean isOut(StackTraceElement candidate) {
-                return defaultCleaner.isOut(candidate)
+            public boolean isIn(StackTraceElement candidate) {
+                return defaultCleaner.isIn(candidate)
                         || candidate.getClassName().endsWith("_Proxy") // dexmaker class proxies
                         || candidate.getClassName().startsWith("$Proxy") // dalvik interface proxies
                         || candidate.getClassName().startsWith("com.google.dexmaker.mockito.");
